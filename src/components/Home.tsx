@@ -13,6 +13,7 @@ import { ThisDay } from './ThisDay'
 import { useCustomDispatch, useCustomSelector } from '../hooks/store'
 import { fetchCurrentWeather } from '../store/thunks/fetchCurrentWeather'
 import { Weather } from '../store/types/types'
+import { selectCurrentWeatherData } from '../store/selectors'
 
 interface Props {
   weather: Weather;
@@ -71,9 +72,7 @@ const Home = (props : Props) => {
   //  }
 
    const dispatch = useCustomDispatch();
-   const {weather} = useCustomSelector(
-    state => state.currentWeatherSliceReducer
-   );
+   const {weather} = useCustomSelector(selectCurrentWeatherData);
 
    useEffect(() => {
     dispatch(fetchCurrentWeather('Paris'));
